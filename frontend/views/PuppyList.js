@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Text, View, Image, Button } from 'react-native'
+import { Text, View } from 'react-native'
 import { DogCard } from './DogCard'
   
 export function PuppyList(){

@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { Text, View, Image, Button } from 'react-native'
 
 export const DogCard = (props) => {
 
@@ -19,11 +18,6 @@ export const DogCard = (props) => {
     }
 
     return (
-        <View>
-            <Text>{dog.name}</Text>
-            <Image resizeMode="contain" style={{ height: 100, width: 'auto' }} source={{ uri: dog.image_url }} />
-            <Text>Likes: {dog.likes}</Text>
-            <Button title="Like" onPress={() => like()} />
-        </View>
+       null // Your Code Here
     )
 }

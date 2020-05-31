@@ -4,7 +4,7 @@ import { Login } from './views/Login';
 import { PuppyList } from './views/PuppyList';
 import { useHistory, Route } from 'react-router';
 import { registerDeviceForNotifications } from './registerDeviceForNotifications';
-import { Platform } from 'react-native';
+import { Platform, View } from 'react-native';
 
 export default function App() {
 	return (
@@ -37,9 +37,9 @@ function Index() {
 	}, [])
 
 	return (
-		<>
+		<View style={{ padding: 20}}>
 			<Route exact path="/login" component={Login} />
 			<Route exact path="/" component={PuppyList} />
-		</>
+		</View>
 	)
 }

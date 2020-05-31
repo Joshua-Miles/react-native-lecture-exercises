@@ -2,13 +2,11 @@ import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
 
 export async function registerDeviceForNotifications() {
-console.log('here')
-    const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
+    const { status } = {} // <-- Replace this 
 
     if (status == 'granted') {
-        console.log('this far')
-        let push_token_id = await Notifications.getExpoPushTokenAsync();
-        console.log(push_token_id)
+
+        // Get the push token here...
 
         fetch(`${process.env.REACT_NATIVE_BACKEND_URL}/profile/devices`, {
             credentials: 'include',
@@ -17,20 +15,19 @@ console.log('here')
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                push_token_id: push_token_id
+                push_token_id: null // <-- ... and send it to your rails server here
             })
         })
-        
+
+
+        // Android requires notifications to come from a specific "channel"
         if (Platform.OS === 'android') {
             Notifications.createChannelAndroidAsync('default', {
-              name: 'default',
-              sound: true,
-              priority: 'max',
-              vibrate: [0, 250, 250, 250],
+                name: 'default',
+                sound: true,
+                priority: 'max',
+                vibrate: [0, 250, 250, 250],
             });
-          }
-
-    } else {
-        alert('Failed to get push token for push notification!');
-    }
+        }
+    } 
 }

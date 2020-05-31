@@ -4,7 +4,7 @@ class CreateDogsTable < ActiveRecord::Migration[5.2]
       table.string(:name)
       table.string(:image_url)
       table.integer(:likes)
-      table.integer(:owner_id)
+      table.integer(:user_id)
     end
   end
 end

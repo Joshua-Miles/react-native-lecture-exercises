@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { View, TextInput, Button, Text, Platform } from 'react-native'
 import { registerDeviceForNotifications } from '../registerDeviceForNotifications'
 import { useHistory } from 'react-router'
   
@@ -7,19 +8,19 @@ export function Login(){
     const history = useHistory()
 
     const [ form, changeForm ] = useState({
-        name: '',
+        username: '',
         password: ''
     })
 
     async function handleSubmit(){
-        let response = await fetch(`http://${process.env.BACKEND_URL}/login`, {
+        let response = await fetch(`${process.env.REACT_NATIVE_BACKEND_URL}/login`, {
             credentials: 'include',
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify({
-                name: form.username,
+                username: form.username,
                 password: form.password
             })
         })
@@ -41,7 +42,7 @@ export function Login(){
             </View>
             <View>
                 <Text>Password</Text>
-                <TextInput value={form.password} onChange={ password => changeForm({ ...form, password: password })} />
+                <TextInput value={form.password} onChangeText={ password => changeForm({ ...form, password: password })} />
             </View>
             <Button  title="Login" onPress={handleSubmit} />
         </View>

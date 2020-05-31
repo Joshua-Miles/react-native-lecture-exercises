@@ -1,15 +1,16 @@
 import * as Permissions from 'expo-permissions';
 import { Notifications } from 'expo';
-import { MY_IP } from './myIP';
 
 export async function registerDeviceForNotifications() {
-
+console.log('here')
     const { status } = await Permissions.getAsync(Permissions.NOTIFICATIONS);
 
     if (status == 'granted') {
+        console.log('this far')
         let push_token_id = await Notifications.getExpoPushTokenAsync();
+        console.log(push_token_id)
 
-        fetch(`http://${MY_IP}:3000/devices`, {
+        fetch(`${process.env.REACT_NATIVE_BACKEND_URL}/profile/devices`, {
             credentials: 'include',
             method: 'POST',
             headers: {

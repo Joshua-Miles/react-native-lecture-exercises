@@ -1,32 +1,40 @@
-Dog.destroy_all
-Device.destroy_all
-User.destroy_all
+user = User.first
 
-username = gets.chomp
-password = gets.chomp
+if (user == nil)
+    
+  Dog.destroy_all
+  Device.destroy_all
+  User.destroy_all
 
-user = User.create({
+  puts "Please enter a username for your login:"
+  username = STDIN.gets.chomp
+
+  puts "Please enter a password for your login:"
+  password = STDIN.gets.chomp
+
+  user = User.create({
     username: username,
-    password: password
-})
+    password: password,
+  })
 
-tess = Dog.create({ 
+  tess = Dog.create({
     user: user,
-    name: 'Tess', 
-    likes: 0, 
-    img_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/tess.jpg"
-})
+    name: "Tess",
+    likes: 0,
+    image_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/tess.jpg",
+  })
 
-rizzo = Dog.create({ 
+  rizzo = Dog.create({
     user: user,
-    name: 'Rizzo', 
-    likes: 0, 
-    img_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/rizzo.jpg" 
-})
+    name: "Rizzo",
+    likes: 0,
+    image_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/rizzo.jpg",
+  })
 
-pip = Dog.create({ 
+  pip = Dog.create({
     user: user,
-    name: 'Pip', 
-    likes: 0 , 
-    img_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/pip.jpg"
-})
+    name: "Pip",
+    likes: 0,
+    image_url: "https://res.cloudinary.com/jmiles/image/upload/v1585587772/lecture-assets/master/appendix/doggos/pip.jpg",
+  })
+end
